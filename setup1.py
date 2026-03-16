@@ -31,6 +31,9 @@ def prepare_dataset():
     # Generate class labels
     classes = list(class_dist.keys())
     probabilities = list(class_dist.values())
+    # Normalize probabilities to sum to 1
+    total = sum(probabilities)
+    probabilities = [p / total for p in probabilities]
     labels = np.random.choice(classes, size=n_samples, p=probabilities)
      
     data = []
